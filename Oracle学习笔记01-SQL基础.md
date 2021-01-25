@@ -4,17 +4,22 @@
 
 - SQL语句的分类
   1. SELECT查询语句
+  
   2. DML（数据库操纵语言）Insert/Update/Delete/Merge
+  
   3. DDL（数据定义语言）Create/Alter/Drop/Truncate
+  
   4. DCL（数据控制语言）Commit/Rollback/Savepoint
+  
+     *SQL语句对大小写不敏感，包括登录的用户名、密码在内都不区分大小写。*
 
-[^P.S.]: SQL语句对大小写不敏感，包括登录的用户名、密码在内都不区分大小写。
+
 
 
 
 ## SELECT语句
 
-[^P.S.]: SQL*Plus常用关键字：desc(describe),ed(edit)
+*SQL\*Plus常用关键字：*`desc(describe),ed(edit)`
 
 - 基础语法
 
@@ -48,7 +53,7 @@
 
   分别输出别名：Id，Name， SEX。
 
-  [^P.S.]: 日期和字符只能在单引号中出现
+  *日期和字符只能在单引号中出现*
 
   
 
@@ -76,17 +81,17 @@
 
   使用WHERE子句紧随FROM子句后进行过滤。
 
-  [^P.S.]: 字符的大小写敏感，日期格式敏感，日期的默认格式为：DD-MON月-RR
+  *字符的大小写敏感，日期格式敏感，日期的默认格式为：DD-MON月-RR*
 
   1. 逻辑运算符
 
-     AND,OR,NOT
+     `AND,OR,NOT`
 
   2. 比较运算符
 
-     =,>,>=,<,<=,!=(or <>)
+     `=,>,>=,<,<=,!=(or <>)`
 
-     :=(赋值)
+     `:=(赋值)`
 
   3. 比较关键字
 
@@ -95,30 +100,29 @@
      | BETWEEN...AND...  | 在两个值之间（包含边界） |
      | IN(SET1,SET2,...) | 等于值列表中的...        |
      | LIKE              | 模糊查询                 |
-
+   | IS NULL           | 空值                     |
+  
      ```sql
      WHERE USER_NAME LIKE '__\_%' ESCAPE '\'
-     ```
-
-     [^P.S.]: '_'表示一个字符，'%'表示0到无穷多个字符，'\\'用作转义功能
-
-     IS NULL 空值
-
-  4. 优先级（仅作了解）
-
-     算数运算符>连接符>比较符>IS,LIKE,IN>BETWEEN>NOT>AND>OR。
-
-  5. 排序
-
-     紧跟FROM子句及WHERE子句之后使用ORDER BY 子句进行排序。
-
-     DESC(从大到小)，ASC(从小到大)，默认情况下为从小到大排列。
-
-     ```sql
+   ```
+  
+   *'_'表示一个字符，'%'表示0到无穷多个字符，'\\'用作转义功能*
+  
+4. 优先级（仅作了解）
+  
+   算数运算符>连接符>比较符>IS,LIKE,IN>BETWEEN>NOT>AND>OR。
+  
+5. 排序
+  
+   紧跟FROM子句及WHERE子句之后使用ORDER BY 子句进行排序。
+  
+   DESC(从大到小)，ASC(从小到大)，默认情况下为从小到大排列。
+  
+   ```sql
      ORDER BY USER_SALARY ASC,USER_JOB ASC
      ```
-
-     
+  
+   
 
 ## 单行函数
 
@@ -130,67 +134,67 @@
 
   - 大小写控制函数
 
-    1. LOWER('ABCdef') 输出 abcdef 
+    1. `LOWER('ABCdef')` 输出 `abcdef`
 
-       [^LOWER]: 转换为小写
+       转换为小写
 
-    2. UPPER('ABCdef') 输出 ABCDEF 
+    2. `UPPER('ABCdef')` 输出 `ABCDEF` 
 
-       [^UPPER]: 转换为大写
+       转换为大写
 
-    3. INITCAPE('ABCdef') 输出 Abcdef 
+    3. `INITCAPE('ABCdef')` 输出 `Abcdef` 
 
-       [^INITCAPE]: 转换为首字母大写
+       转换为首字母大写
 
   - 字符控制函数
 
-    1. CONCAT('Hello','World') 输出 HelloWorld 
+    1. `CONCAT('Hello','World')` 输出 `HelloWorld `
 
-       [^CONCAT]: 连接
+       连接
 
-    2. SUBSTR('HelloWorld',1,5) 输出 Hello 
+    2. `SUBSTR('HelloWorld',1,5)` 输出 `Hello `
 
-       [^SUBSTR]: 从第 1位起截取 5位
+       从第1位起截取5位
 
-    3. LENGTH('HelloWorld') 输出 10 
+    3. `LENGTH('HelloWorld')` 输出 `10` 
 
-       [^LENGTH]: 长度
+       长度
 
-    4. INSTR('HelloWorld','W') 输出 6 
+    4. `INSTR('HelloWorld','W')` 输出 `6` 
 
-       [^INSTR]: 第 1次出现时的位置
+       第1次出现时的位置
 
-    5. LPAD(USERSALARY,10,'?') 输出 ?????15000 
+    5. `LPAD(USERSALARY,10,'?')` 输出 `?????15000` 
 
-       [^LPAD]: 输出 10位，不足的用 ？补全在前面
+       输出10位，不足的用？补全在前面
 
-    6. RPAD(USERSALARY,10,'?') 输出 15000????? 
+    6. `RPAD(USERSALARY,10,'?')` 输出 `15000?????` 
 
-       [^RPAD]: 输出 10位，不足的用 ？补全在后面
+       输出10位，不足的用？补全在后面
 
-    7. TRIM('A' FROM 'ABABA') 输出 BAB 
+    7. `TRIM('A' FROM 'ABABA')` 输出 `BAB` 
 
-       [^TRIM]: 去除掉首尾处的 'A'
+       去除掉首尾处的'A'
 
-    8. REPLACE('ABABA','A','O') 输出 OBOBO 
+    8. `REPLACE('ABABA','A','O')` 输出 `OBOBO` 
 
-       [^REPLACE]: 将 'A'全部替换为 'O'
+       将'A'全部替换为'O'
 
   
 
 - 数字函数
 
-  - ROUND(3.14159,3)   输出 3.142 
+  - `ROUND(3.14159,3)`   输出 `3.142` 
 
-  [^ROUND]: 保留三位小数四舍五入
+    保留三位小数四舍五入
 
-  - TRUNC(3.14159,3)   输出 3.141 
+  - `TRUNC(3.14159,3)`   输出 `3.141` 
 
-  [^TRUNC]: 保留三位小数截断
+    保留三位小数截断
 
-  - MOD(1600,300)   输出 100 
+  - `MOD(1600,300)`   输出 `100` 
 
-  [^MOD]: 求余
+    求余
 
   
 
@@ -212,29 +216,29 @@
 
   - 日期函数
 
-    1.   MONTHS_BETWEEN(SYSDATE,HIREDATE)
+    1.   `MONTHS_BETWEEN(SYSDATE,HIREDATE)`
 
-       [^MONTHS_BETWEEN]: 两个日期相差的月数
+       两个日期相差的月数
 
-    2. ADD_MONTHS(SYSDATE,2)
+    2. `ADD_MONTHS(SYSDATE,2)`
 
-       [^ADD_MONTHS]: 向指定日期中加上若干月数
+       向指定日期中加上若干月数
 
-    3. NEXT_DAY(SYSDATE,'星期日')
+    3. `NEXT_DAY(SYSDATE,'星期日')`
 
-       [^NEXT_DAY]: 指定日期的下一星期?对应的日期
+       指定日期的下一星期?对应的日期
 
-    4. LAST_DAY(SYSDATE)
+    4. `LAST_DAY(SYSDATE)`
 
-       [^LAST_DAY]: 本月最后一天
+       本月最后一天
 
-    5. ROUND(SYSDATE,'MONTH'),(SYSDATE,'MM')
+    5. `ROUND(SYSDATE,'MONTH'),(SYSDATE,'MM')`
 
-       [^ROUND]: 日期四舍五入
+       日期四舍五入
 
-    6. TRUNC(SYSDATE,'HH')
+    6. `TRUNC(SYSDATE,'HH')`
 
-       [^TRUNC]: 日期截断
+       日期截断
 
 
 
@@ -288,20 +292,29 @@
     --'NULL'处为可能为空的值
     ```
 
-    [^NVL函数]: 将空值转换成一个已知的值
+    `NVL2(EXPR1,EXPR2)`
+
+     将空值转换成一个已知的值。
 
   - NVL2函数
 
-    [^NVL2(EXPR1,EXPR2,EXPR3)]: EXPR1不为空，返回EXPR2；为空则返回EXPR3。
+    `NVL2(EXPR1,EXPR2,EXPR3)`
 
+    EXPR1不为空，返回EXPR2；为空则返回EXPR3。
+  
   - NULLIF函数
-
-    [^NULLIF(EXPR1,EXPR2)]: 相等返回NULL，不等返回EXPR1。
+  
+    `NULLIF(EXPR1,EXPR2)`
+  
+    相等返回NULL，不等返回EXPR1。
   
   - COALESCE函数 
   
-    [^COALESCE(EXPR1,EXPR2,EXPR3,...)]: 如果第一个表达式为空，则返回下一个表达式，对其他参数进行COALESCE。
+    `COALESCE(EXPR1,EXPR2,EXPR3,...)`
   
+    如果第一个表达式为空，则返回下一个表达式，对其他参数进行COALESCE。
+    
     
   
   
+
