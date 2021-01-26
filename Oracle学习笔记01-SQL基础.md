@@ -334,7 +334,7 @@
                    SEARCH2,RESULT2,
                    DEFAILT)
        --与CASE表达式结构不同作用相同
-       ```  
+       ```   
   
   
 
