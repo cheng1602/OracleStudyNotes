@@ -314,7 +314,27 @@
   
     如果第一个表达式为空，则返回下一个表达式，对其他参数进行COALESCE。
     
-    
+    - 条件表达式
+
+    1. CASE表达式
+
+       ```sql
+       CASE EXPR WHEN COMPARISON_EXPR1 THEN RETURN_EXPER1
+                 WHEN COMPARISON_EXPR1 THEN RETURN_EXPER1
+                 WHEN COMPARISON_EXPR1 THEN RETURN_EXPER1
+                 ELSE ELSE_EXPER
+       END
+       --类似Java中的case语句
+       ```
+
+    2. DECODE表达式
+
+       ```sql
+       DECODE(EXPR,SEARCH1,RESULT1,
+                   SEARCH2,RESULT2,
+                   DEFAILT)
+       --与CASE表达式结构不同作用相同
+       ```  
   
   
 
