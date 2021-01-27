@@ -1,6 +1,6 @@
 # JDBC操作Oracle中的表格数据
 
-- 增、删、改、查
+- 增、删、改、查、传参
 
   ```java
   package connectDatabaseTest; 
@@ -93,5 +93,5 @@
   
   ```
 
-  
+ 
 
